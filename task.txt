@@ -31,7 +31,7 @@ Każde ogłoszenie ma:
 Interfejs graficzny nie jest wymagany. Funkcjonalność będzie sprawdzona przy pomocy Postmana. Należy pamiętać o obsłudze błędów, nazewnictwie endpointów, obsłudze metod HTTP oraz zwracanych kodów odpowiedzi HTTP.
 Lista funkcji:
     0. Aplikacja jest udokumentowana za pomocą Postmana - kolekcją zawierającą przykłady żądań do wszystkich przygotowanych funkcji.
-    1. [1 punkt] Port z którego korzysta aplikacja powinien być ustawiany za pomocą zmiennych środowiskowych.
+    1. DONE - [1 punkt] Port z którego korzysta aplikacja powinien być ustawiany za pomocą zmiennych środowiskowych.
     2. [1 punkt] Na żądania wysłane pod adres /heartbeat aplikacja odpowiada zwracając aktualną datę i godzinę.
     3. [1 punkt] Aplikacja umożliwia dodawanie ogłoszenia.
     4. [1 punkt] Aplikacja umożliwia zwracanie pojedynczego ogłoszenia. W zależności od nagłówka żądania Accept dane są zwracane w odpowiednim formacie (przykładowe nagłówki: text/plain, text/html, application/json). Można wykorzystać funkcję Express res.format().

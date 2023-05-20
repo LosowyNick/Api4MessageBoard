@@ -1,7 +1,9 @@
+require("dotenv").config();
+
 const http = require("http");
 
 const app = http.createServer((request, response) => {
     response.end("Hello server!");
 });
 
-app.listen(4700, console.log("Server started..."));
+app.listen(process.env.appPort, console.log("Server started..."));

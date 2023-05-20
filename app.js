@@ -1,8 +1,11 @@
 require("dotenv").config();
-
-const express = require('express');
+const express = require("express");
 const app = express();
 app.disable("x-powered-by");
+
+const heartbeat = require("./routes/heartbeat");
+
+app.use("/heartbeat",  heartbeat);
 
 app.all("*", (req, res) => { //gwiazdki przesunac na koniec
     res.send("Hello server!"); //i tu bedzie ten domyślny obrazek z błedem

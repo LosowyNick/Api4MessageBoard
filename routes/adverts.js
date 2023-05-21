@@ -10,8 +10,6 @@ async function connectWithDatabase(collectionName, operation){
 
     const db = client.db(process.env.DB_NAME);
     const usersCollection = db.collection(collectionName);
-
-    //const dbResponse = await usersCollection.find().toArray();
     const dbResponse = await operation(usersCollection);
 
     return dbResponse;
@@ -33,11 +31,12 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const operation = 1;
-
-    const advertId = req.params;
-
-    const advert = await sendReqToDatabase(collectionName, operation); 
+    //6469df0760c6ad7d1423548c
+    const advertId = req.params; //zabezpieczyc na wypadek zlego ID
+    const showOneAdvert = function(obj){
+        return obj.findOne({ "_id": new ObjectId(advertId) });
+    };
+    const advert = await sendReqToDatabase(collectionName, showOneAdvert); 
     res.send(advert);
 });
 

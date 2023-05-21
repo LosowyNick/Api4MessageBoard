@@ -13,7 +13,7 @@ app.all("*", (req, res) => { //gwiazdki przesunac na koniec
     res.send("Hello server!"); //i tu bedzie ten domyślny obrazek z błedem
 });
 
-app.listen(process.env.appPort, console.log("Server started..."));
+app.listen(process.env.APP_PORT, console.log("Server started..."));
 
 /*
 RZECZOWNIKI W LICZBIE MNOGIEJ:

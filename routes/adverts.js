@@ -1,39 +1,44 @@
 const express = require('express');
 const router = express.Router();
 
-//DB start
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = process.env.CONNECTION_STRING;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-async function main(){
+async function connectWithDatabase(collectionName, operation){
     await client.connect();
 
     const db = client.db(process.env.DB_NAME);
-    const usersCollection = db.collection("adverts");
+    const usersCollection = db.collection(collectionName);
 
-    let adverts = await usersCollection.find().toArray();
-    console.log(adverts);
+    //const dbResponse = await usersCollection.find().toArray();
+    const dbResponse = await operation(usersCollection);
 
-    return adverts;
+    return dbResponse;
 }
 
-//main().then().catch(console.error).finally(client.close()); 
+async function sendReqToDatabase(collectionName, operation){
+    const databaseAnswer = await connectWithDatabase(collectionName, operation).then().catch(console.error).finally(client.close());
+    return databaseAnswer;
+}
 
-//db end
+const collectionName = "adverts";
 
 router.get('/', async (req, res) => {
-    
-    const adverts = await main().then().catch(console.error).finally(client.close()); 
-    console.log(adverts);
+    const showAllAdverts = function(obj){
+        return obj.find().toArray();
+    };
+    const adverts = await sendReqToDatabase(collectionName, showAllAdverts); 
     res.send(adverts);
-    
-
-    res.send("Lista ogłsozeń");
 });
 
-router.get('/:id', (req, res) => {
-    res.send("Tu bedzie 1 ogłoszenie");
+router.get('/:id', async (req, res) => {
+    const operation = 1;
+
+    const advertId = req.params;
+
+    const advert = await sendReqToDatabase(collectionName, operation); 
+    res.send(advert);
 });
 
 module.exports = router;

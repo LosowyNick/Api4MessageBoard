@@ -25,8 +25,8 @@ adverts
 
 CRUD dla advert:
     CREATE: POST /adverts
-    READ: GET /adverts
-    READ: GET /adverts/:id
+    READ: GET /adverts ########## DONE
+    READ: GET /adverts/:id ########## DONE
     UPDATE: PATCH /adverts/:id
     DELETE: DELETE /adverts/:id
 

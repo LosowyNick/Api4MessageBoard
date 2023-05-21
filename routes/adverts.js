@@ -1,24 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = process.env.CONNECTION_STRING;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
-async function connectWithDatabase(collectionName, operation){
-    await client.connect();
-
-    const db = client.db(process.env.DB_NAME);
-    const usersCollection = db.collection(collectionName);
-    const dbResponse = await operation(usersCollection);
-
-    return dbResponse;
-}
-
-async function sendReqToDatabase(collectionName, operation){
-    const databaseAnswer = await connectWithDatabase(collectionName, operation).then().catch(console.error).finally(client.close());
-    return databaseAnswer;
-}
+const myDatabase = require("../my_modules/db_connector");
+const sendReqToDatabase = myDatabase.sendReqToDatabase;
+const ObjectId = myDatabase.ObjectId;
 
 const collectionName = "adverts";
 
@@ -31,8 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    //6469df0760c6ad7d1423548c
-    const advertId = req.params; //zabezpieczyc na wypadek zlego ID
+    const advertId = req.params;
     const showOneAdvert = function(obj){
         return obj.findOne({ "_id": new ObjectId(advertId) });
     };

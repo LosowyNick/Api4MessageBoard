@@ -13,16 +13,23 @@ async function main(){
     const usersCollection = db.collection("adverts");
 
     let adverts = await usersCollection.find().toArray();
+    console.log(adverts);
 
     return adverts;
 }
 
+//main().then().catch(console.error).finally(client.close()); 
+
 //db end
 
-router.get('/', (req, res) => {
-    const adverts = main().then().catch(console.error).finally(client.close()); //naprawić
+router.get('/', async (req, res) => {
+    
+    const adverts = await main().then().catch(console.error).finally(client.close()); 
     console.log(adverts);
     res.send(adverts);
+    
+
+    res.send("Lista ogłsozeń");
 });
 
 router.get('/:id', (req, res) => {

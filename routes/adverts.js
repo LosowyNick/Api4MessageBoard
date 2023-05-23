@@ -39,7 +39,7 @@ router.post("/", jsonParser,
     }
   },
   async (req, res) => {
-    const newAdvert = req.body;
+    let newAdvert = req.body;
     //trzeba dolozyc tez pola, generowane automatycznie...np. tsy
     const addNewAdvert = function(obj){
         return obj.insertOne({newAdvert});

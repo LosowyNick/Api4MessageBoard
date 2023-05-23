@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json();
-
 const myDatabase = require("../my_modules/db_connector");
 const sendReqToDatabase = myDatabase.sendReqToDatabase;
 const ObjectId = myDatabase.ObjectId;
-
 const manageHeaders = require("../my_modules/manage_headers");
+const JsonValidator = require("../my_modules/json_validators");
 
 const collectionName = "adverts";
 
@@ -31,9 +30,13 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", jsonParser, 
   async (req, res, next) => {
-    //ogarnąć walidator
-    console.log(req.body); //usunac
-    next();
+    const validationResult = JsonValidator.newAdvertJsonValidate(req.body);
+    if(validationResult[0] === true){
+      next();
+    }else{
+      res.statusCode = 400;
+      res.send(validationResult[1][0].stack)
+    }
   },
   async (req, res) => {
     const newAdvert = req.body;

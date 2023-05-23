@@ -28,6 +28,6 @@ const newAdvertJsonValidate = function(jsonToValidate){
 
 };
 
-module.exports = newAdvertJsonValidate;
+module.exports = {newAdvertJsonValidate};
 
 

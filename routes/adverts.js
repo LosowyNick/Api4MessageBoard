@@ -52,13 +52,28 @@ router.post("/", jsonParser,
   },
   async (req, res) => {
     let newAdvert = req.body;
+
+    Object.keys(newAdvert).forEach(
+      (key1) => {
+        if(typeof newAdvert[key1] == "object"){
+          Object.keys(newAdvert[key1]).forEach(
+            (key2) => { newAdvert[key1][key2] = encodeURIComponent(newAdvert[key1][key2]);}
+          );
+        }else{ newAdvert[key1] = encodeURIComponent(newAdvert[key1]);}
+      }
+    );
+
     newAdvert.modified = newAdvert.added = {"$timestamp": Date.now()}; //ehh ...zmienic wszedzie na to ISO jednak...i typ w bazie tez poprawic
     console.log(newAdvert);//do usuniecia
+    //dodac encodowanie
+
+    
+    
     const addNewAdvert = function(obj){
         return obj.insertOne({newAdvert});
     };
-    const newAdvertId = await sendReqToDatabase(collectionName.adverts, addNewAdvert); 
-    console.log(newAdvertId); //usunac
+    //const newAdvertId = await sendReqToDatabase(collectionName.adverts, addNewAdvert); 
+    //console.log(newAdvertId); //usunac
     res.send("Dodanie ogloszenia2"); //jaka odpowiedz dać? tylko ID? a moze tez TRUE? a w przypadku niepowodzenia?
   }
 );

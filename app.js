@@ -24,11 +24,11 @@ RZECZOWNIKI W LICZBIE MNOGIEJ:
 adverts
 
 CRUD dla advert:
-    CREATE: POST /adverts
+    CREATE: POST /adverts  ########## DONE
     READ: GET /adverts ########## DONE
     READ: GET /adverts/:id ########## DONE
     UPDATE: PATCH /adverts/:id
-    DELETE: DELETE /adverts/:id
+    DELETE: DELETE /adverts/:id ########## DONE
 
     Listowanie advertsów z wyszukiwaniem
     GET /adverts?cat1={query_cat1}&cat2={query_cat2}

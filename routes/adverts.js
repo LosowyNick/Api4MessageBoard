@@ -23,9 +23,9 @@ router.get("/:id", async (req, res) => {
     const showOneAdvert = function(obj){
         return obj.findOne({ "_id": new ObjectId(advertId) });
     };
-    const advert = await sendReqToDatabase(dbCollectionNames.adverts, showOneAdvert); 
+    const searchedAdvert = await sendReqToDatabase(dbCollectionNames.adverts, showOneAdvert); 
     myAwesomeFunctions.setProperAcceptHeader(res);
-    res.send(advert);
+    res.send(searchedAdvert);
 });
 
 router.post("/", jsonParser, 
@@ -68,5 +68,25 @@ router.post("/", jsonParser,
     }
   }
 );
+
+router.delete("/:id", async (req, res) => {
+  const advertId = req.params;
+  const deleteOneAdvert = function(obj){
+      return obj.deleteOne({ "_id": new ObjectId(advertId) });
+  };
+  const deletionStatus = await sendReqToDatabase(dbCollectionNames.adverts, deleteOneAdvert); 
+  console.log(deletionStatus);
+  if(deletionStatus.acknowledged == true){
+    if(deletionStatus.deletedCount == 1){
+      res.statusCode = 200;
+      res.send("Advert has been deleted.");
+    }else{
+      res.statusCode = 204;
+    }
+  }else{
+    res.statusCode = 424;
+    res.send("Deletion has failed.");
+  }
+});
 
 module.exports = router;

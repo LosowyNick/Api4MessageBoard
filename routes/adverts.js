@@ -53,14 +53,19 @@ router.post("/", jsonParser,
   async (req, res) => {
     let newAdvert = req.body;
     myAwesomeFunctions.encodeStringsInJson(newAdvert);
-    newAdvert.modified = newAdvert.added = {"$timestamp": Date.now()}; //ehh ...zmienic wszedzie na to ISO jednak...i typ w bazie tez poprawic
-    console.log(newAdvert);//do usuniecia
+    newAdvert.price = newAdvert.price;
+    newAdvert.modified = newAdvert.added = new Date();
     const addNewAdvert = function(obj){
-        return obj.insertOne({newAdvert});
+        return obj.insertOne(newAdvert);
     };
-    //const newAdvertId = await sendReqToDatabase(dbCollectionNames.adverts, addNewAdvert); 
-    //console.log(newAdvertId); //usunac
-    res.send("Dodanie ogloszenia2"); //jaka odpowiedz dać? tylko ID? a moze tez TRUE? a w przypadku niepowodzenia?
+    const createdAdvert = await sendReqToDatabase(dbCollectionNames.adverts, addNewAdvert); 
+    if(createdAdvert.acknowledged == true){
+      res.statusCode = 201;
+      res.send(createdAdvert.insertedId);
+    }else{
+      res.statusCode = 424;
+      res.send("Advert creation has failed.");
+    }
   }
 );
 

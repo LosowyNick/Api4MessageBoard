@@ -17,4 +17,14 @@ function setProperAcceptHeader(response){
     })
   }
 
-  module.exports = { setProperAcceptHeader };
+function encodeStringsInJson(json){
+    for(let i in json){
+      if(typeof json[i] != "object"){
+        if(typeof json[i] == "string"){json[i] = encodeURIComponent(json[i]);}
+      }else{
+        encodeStringsInJson(json[i]);
+      }
+    }
+  }
+
+  module.exports = { setProperAcceptHeader, encodeStringsInJson };

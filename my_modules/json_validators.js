@@ -7,7 +7,7 @@ const AdvertJsonValidate = function(jsonToValidate){
     const allowedCategories = Object.values(advertCategories_PL);
     const alloweddeliveryMethods = Object.values(deliveryMethods_PL);
     const allowedpaymentMethods = Object.values(paymentMethods_PL);
-    const newAdvertJsonSchema = {
+    const AdvertJsonSchema = {
         "id":"/advert",
         "type":"object",
         "properties": {
@@ -23,7 +23,7 @@ const AdvertJsonValidate = function(jsonToValidate){
         "additionalProperties": false
     };
     const v = new validator();
-    const result = v.validate(jsonToValidate, newAdvertJsonSchema);
+    const result = v.validate(jsonToValidate, AdvertJsonSchema);
     return [result.valid, result.errors];
 
 };

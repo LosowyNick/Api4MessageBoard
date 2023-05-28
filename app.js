@@ -19,6 +19,7 @@ app.listen(process.env.APP_PORT, console.log("Server started..."));
 TODO:
 - zabezpieczyć GET /adverts/:id przed wpisywaniem złego ID..krótkiego? jak to połączyć z domyślnym obrazkiem?
 - status cody dodac do getów i innych...wszędzie!
+- czy userID powinno znajdować się w szablonie? i wysyłanych dokumentach?
 
 RZECZOWNIKI W LICZBIE MNOGIEJ:
 adverts

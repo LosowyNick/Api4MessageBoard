@@ -3,12 +3,12 @@ const advertCategories_PL = require("../enums/advert_categories");
 const deliveryMethods_PL = require("../enums/delivery_methods");
 const paymentMethods_PL = require("../enums/payment_methods");
 
-const newAdvertJsonValidate = function(jsonToValidate){
+const AdvertJsonValidate = function(jsonToValidate){
     const allowedCategories = Object.values(advertCategories_PL);
     const alloweddeliveryMethods = Object.values(deliveryMethods_PL);
     const allowedpaymentMethods = Object.values(paymentMethods_PL);
     const newAdvertJsonSchema = {
-        "id":"/newAdvert",
+        "id":"/advert",
         "type":"object",
         "properties": {
             "title": {"type": "string", "required": true, "minLength": 1},
@@ -28,6 +28,6 @@ const newAdvertJsonValidate = function(jsonToValidate){
 
 };
 
-module.exports = {newAdvertJsonValidate};
+module.exports = {AdvertJsonValidate};
 
 

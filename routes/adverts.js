@@ -30,7 +30,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", jsonParser, 
   (req, res, next) => {
-    const validationResult = JsonValidator.newAdvertJsonValidate(req.body);
+    const validationResult = JsonValidator.AdvertJsonValidate(req.body);
     if(validationResult[0] === true){
       next();
     }else{
@@ -53,7 +53,6 @@ router.post("/", jsonParser,
   async (req, res) => {
     let newAdvert = req.body;
     myAwesomeFunctions.encodeStringsInJson(newAdvert);
-    newAdvert.price = newAdvert.price;
     newAdvert.modified = newAdvert.added = new Date();
     const addNewAdvert = function(obj){
         return obj.insertOne(newAdvert);
@@ -88,5 +87,47 @@ router.delete("/:id", async (req, res) => {
     res.send("Deletion has failed.");
   }
 });
+
+router.patch("/:id", jsonParser, 
+  (req, res, next) => {
+    const validationResult = JsonValidator.AdvertJsonValidate(req.body);
+    if(validationResult[0] === true){
+      next();
+    }else{
+      res.statusCode = 400;
+      res.send(validationResult[1][0].stack)
+    }
+  },
+  async (req, res, next) => {
+    const showOneUser = function(obj){
+      return obj.findOne({ "_id": new ObjectId(req.body.userId) });
+    };
+    const userFromDatabase = await sendReqToDatabase(dbCollectionNames.users, showOneUser);
+    if(userFromDatabase != undefined){
+      next();
+    }else{
+      res.statusCode = 401;
+      res.send("User not found.");
+    }
+  },
+  async (req, res) => {
+    const advertId = req.params;
+    let advertForModification = req.body;
+    myAwesomeFunctions.encodeStringsInJson(advertForModification);
+    advertForModification.modified = new Date();
+    const modifyAdvert = function(obj){
+        return obj.updateOne({_id: new ObjectId(advertId)},{$set: advertForModification});
+    };
+    const modifiedAdvertStatus = await sendReqToDatabase(dbCollectionNames.adverts, modifyAdvert); 
+    console.log(modifiedAdvertStatus);
+    if(modifiedAdvertStatus.acknowledged == true){
+      res.statusCode = 200;
+      res.send("Advert updated successfully");
+    }else{
+      res.statusCode = 500;
+      res.send("Advert update has failed.");
+    }
+  }
+);
 
 module.exports = router;

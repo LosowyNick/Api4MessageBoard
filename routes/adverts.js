@@ -11,10 +11,13 @@ const dbCollectionNames = require('../enums/db_collection_names');
 
 
 router.get("/", async (req, res) => {
-    const showAllAdverts = function(obj){
-        return obj.find().toArray();
+    console.log(req.query);//do usun
+    const titleRegExp = (req.query.title) ? new RegExp(".*"+encodeURIComponent(req.query.title)+".*","i") : ".*";
+    const bodyRegExp = (req.query.body) ? new RegExp(".*"+encodeURIComponent(req.query.body)+".*","i") : ".*";
+    const showAdverts = function(obj){
+      return obj.find({$and:[{title:{$regex : titleRegExp}},{body:{$regex : bodyRegExp}}]}).toArray();
     };
-    const adverts = await sendReqToDatabase(dbCollectionNames.adverts, showAllAdverts); 
+    const adverts = await sendReqToDatabase(dbCollectionNames.adverts, showAdverts); 
     res.send(adverts);
 });
 

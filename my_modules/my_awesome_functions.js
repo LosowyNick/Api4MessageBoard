@@ -43,4 +43,16 @@ function validateMaxPrice(maxPrice){
   }
 }
 
-module.exports = { setProperAcceptHeader, encodeStringsInJson, validateMinPrice, validateMaxPrice };
+function prepareRegExpForTagsSearch(tags){
+  let pattern = ".*";
+  if(tags != undefined && tags.length > 1){
+    let tempArray = tags.split(",");
+    tempArray = tempArray.map(function(el){
+      return encodeURIComponent(el);
+    });
+    pattern = new RegExp(tempArray.join("|"), "i");
+  }
+  return pattern;
+}
+
+module.exports = { setProperAcceptHeader, encodeStringsInJson, validateMinPrice, validateMaxPrice, prepareRegExpForTagsSearch};

@@ -12,10 +12,16 @@ const dbCollectionNames = require('../enums/db_collection_names');
 
 router.get("/", async (req, res) => {
     console.log(req.query);//do usun
+    //zamknac w jakiejs funkcji filters:)
     const titleRegExp = (req.query.title) ? new RegExp(".*"+encodeURIComponent(req.query.title)+".*","i") : ".*";
     const bodyRegExp = (req.query.body) ? new RegExp(".*"+encodeURIComponent(req.query.body)+".*","i") : ".*";
+    const minPrice = myAwesomeFunctions.validateMinPrice(req.query.minprice);
+    const maxPrice = myAwesomeFunctions.validateMaxPrice(req.query.maxprice);
+    const minDate = (req.query.mindate) ? new Date(req.query.mindate+",00:00:00") : new Date("1970-01-01");
+    const maxDate = (req.query.maxdate) ? new Date(req.query.maxdate+",23:59:59") : new Date("2970-01-01");
+    const tagsRegExp = (req.query.tags) ? new RegExp("Opel|Polska") : ".*"; //encodowanie
     const showAdverts = function(obj){
-      return obj.find({$and:[{title:{$regex : titleRegExp}},{body:{$regex : bodyRegExp}}]}).toArray();
+      return obj.find({$and:[{tags:{$regex: tagsRegExp}},{modified:{$gte: minDate, $lte: maxDate}},{title:{$regex : titleRegExp}},{body:{$regex : bodyRegExp}},{price: {$gte: minPrice, $lte: maxPrice}}]}).toArray();
     };
     const adverts = await sendReqToDatabase(dbCollectionNames.adverts, showAdverts); 
     res.send(adverts);

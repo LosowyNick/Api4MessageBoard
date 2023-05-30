@@ -27,4 +27,20 @@ function encodeStringsInJson(json){
     }
   }
 
-  module.exports = { setProperAcceptHeader, encodeStringsInJson };
+function validateMinPrice(minPrice){
+  if(minPrice != undefined && !Number.isNaN(parseFloat(minPrice))){
+    return parseFloat(minPrice);
+  }else{
+    return -Infinity;
+  }
+}
+
+function validateMaxPrice(maxPrice){
+  if(maxPrice != undefined && !Number.isNaN(parseFloat(maxPrice))){
+    return parseFloat(maxPrice);
+  }else{
+    return Infinity;
+  }
+}
+
+module.exports = { setProperAcceptHeader, encodeStringsInJson, validateMinPrice, validateMaxPrice };

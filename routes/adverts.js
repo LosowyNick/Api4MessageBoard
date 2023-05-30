@@ -25,14 +25,22 @@ router.get("/", async (req, res) => {
     res.send(adverts);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => { //kurde..... jak przekierowac blede ID do obrazka? takze za krotkie....
+  
     const advertId = req.params;
     const showOneAdvert = function(obj){
-        return obj.findOne({ "_id": new ObjectId(advertId) });
+      return obj.findOne({ "_id": new ObjectId(advertId) });
     };
+  try{  
     const searchedAdvert = await sendReqToDatabase(dbCollectionNames.adverts, showOneAdvert); 
+    if(searchedAdvert == null){
+      next();
+    } 
     myAwesomeFunctions.setProperAcceptHeader(res);
     res.send(searchedAdvert);
+  }catch(err){
+    next(err);
+  } 
 });
 
 router.post("/", jsonParser, 

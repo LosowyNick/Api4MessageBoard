@@ -19,6 +19,9 @@ TODO:
 - zabezpieczyć GET /adverts/:id przed wpisywaniem złego ID..krótkiego? jak to połączyć z domyślnym obrazkiem?
 - status cody dodac do getów i innych...wszędzie!
 - czy userID powinno znajdować się w szablonie? i wysyłanych dokumentach? - już sam nie wiem
+- DELETE advert gdy podajemy zly id - brak ODP :( - headery?
+- UPDATE advert - jw ...problem gdy podajemy zle ID - chyba wiem...... jak wpada do routera "ADVERTS, to stamtąd nie wychodzi :(?"
+- oczywiscie 404...dostawac powinnismy tylko dla GETóW
 
 RZECZOWNIKI W LICZBIE MNOGIEJ:
 adverts

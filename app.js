@@ -2,19 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 app.disable("x-powered-by");
-
-
-
 const heartbeat = require("./routes/heartbeat");
 const adverts = require("./routes/adverts");
 const loggerMiddleware = require("./middleware/logger");
+const errorPage = require("./routes/errorPage");
 
 app.use(loggerMiddleware.logger);
 app.use("/heartbeat",  heartbeat);
 app.use("/adverts",  adverts);
-app.all("*", (req, res) => { //gwiazdki przesunac na koniec
-    res.send("Hello server!"); //i tu bedzie ten domyślny obrazek z błedem
-});
+app.use("*", errorPage);
 
 app.listen(process.env.APP_PORT, console.log("Server started..."));
 

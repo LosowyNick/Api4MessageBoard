@@ -5,10 +5,11 @@ app.disable("x-powered-by");
 
 const heartbeat = require("./routes/heartbeat");
 const adverts = require("./routes/adverts");
+const loggerMiddleware = require("./middleware/logger");
 
+app.use(loggerMiddleware.logger);
 app.use("/heartbeat",  heartbeat);
 app.use("/adverts",  adverts);
-
 app.all("*", (req, res) => { //gwiazdki przesunac na koniec
     res.send("Hello server!"); //i tu bedzie ten domyślny obrazek z błedem
 });
@@ -28,11 +29,11 @@ CRUD dla advert:
     CREATE: POST /adverts  ########## DONE
     READ: GET /adverts ########## DONE
     READ: GET /adverts/:id ########## DONE
-    UPDATE: PATCH /adverts/:id
+    UPDATE: PATCH /adverts/:id ########## DONE
     DELETE: DELETE /adverts/:id ########## DONE
 
     Listowanie advertsów z wyszukiwaniem
-    GET /adverts?cat1={query_cat1}&cat2={query_cat2}
+    GET /adverts?cat1={query_cat1}&cat2={query_cat2} ########## DONE
 
 INNE
 

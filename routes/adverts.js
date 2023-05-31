@@ -9,7 +9,6 @@ const myAwesomeFunctions = require("../my_modules/my_awesome_functions");
 const JsonValidator = require("../my_modules/json_validators");
 const dbCollectionNames = require('../enums/db_collection_names');
 
-
 router.get("/", async (req, res) => {
     const titleRegExp = (req.query.title) ? new RegExp(".*"+encodeURIComponent(req.query.title)+".*","i") : ".*";
     const bodyRegExp = (req.query.body) ? new RegExp(".*"+encodeURIComponent(req.query.body)+".*","i") : ".*";
@@ -25,22 +24,19 @@ router.get("/", async (req, res) => {
     res.send(adverts);
 });
 
-router.get("/:id", async (req, res, next) => { //kurde..... jak przekierowac blede ID do obrazka? takze za krotkie....
+router.get("/:id", async (req, res, next) => {
   
     const advertId = req.params;
     const showOneAdvert = function(obj){
       return obj.findOne({ "_id": new ObjectId(advertId) });
     };
-  try{  
     const searchedAdvert = await sendReqToDatabase(dbCollectionNames.adverts, showOneAdvert); 
     if(searchedAdvert == null){
       next();
-    } 
-    myAwesomeFunctions.setProperAcceptHeader(res);
-    res.send(searchedAdvert);
-  }catch(err){
-    next(err);
-  } 
+    }else{
+      myAwesomeFunctions.setProperAcceptHeader(res);
+      res.send(searchedAdvert);
+    }
 });
 
 router.post("/", jsonParser, 

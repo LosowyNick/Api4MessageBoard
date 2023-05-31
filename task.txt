@@ -45,3 +45,20 @@ Lista funkcji:
     12. DONE - [3 punkty] Po uruchomieniu z parametrem debug (np node app.js debug) aplikacja zapisuje w pliku tekstowym czas odebrania każdego żądania, metodę HTTP oraz adres na który przyszło żądanie.
     13. DONE - [2 punkty] Po odebraniu żądania wysłanego na adres który nie istnieje, aplikacja powinna zwracać statyczny obrazek zamiast domyślnej strony błędu 404.
     14. [2 punkty] W przypadku wystąpienia błędów aplikacji, szczegóły błędu wyświetlane są za pomocą console.log a klient dostaje stosowny komunikat i kod odpowiedzi HTTP.
+
+///Edited///
+Passy użytkowników testowych:
+_id: ObjectId(6469cfaae7387437e5cbedbc),
+name: "Mirek",
+login: "mirek2000",
+password: "qwerty123"
+
+_id: ObjectId(6469d03c8a02e9dee1fc23d1),
+name: "Patryk",
+login: "patryk2000",
+password: "qwerty111"
+
+_id:  ObjectId(6469d0698a02e9dee1fc23d2),
+name: "Iwona",
+login: "iwona2000",
+password: "111qwerty"

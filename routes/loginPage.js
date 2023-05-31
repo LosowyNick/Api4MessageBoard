@@ -35,7 +35,7 @@ router.post("/", jsonParser,
             } else {
                 bcrypt.compare(password, user.password).then(function (result) {
                     if(result){
-                        const maxAge = 1 * 60 * 60;
+                        const maxAge = 3 * 60 * 60;
                         const token = jwt.sign(
                             { id: user._id },
                             jwtSecret,

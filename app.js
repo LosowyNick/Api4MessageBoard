@@ -7,7 +7,9 @@ const adverts = require("./routes/adverts");
 const loggerMiddleware = require("./middleware/logger");
 const errorPage = require("./routes/errorPage");
 const loginPage = require("./routes/loginPage");
+const cookieParser = require("cookie-parser");
 
+app.use(cookieParser());
 app.use(loggerMiddleware.logger);
 app.use("/heartbeat",  heartbeat);
 app.use("/adverts",  adverts);

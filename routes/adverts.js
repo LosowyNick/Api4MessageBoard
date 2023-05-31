@@ -8,6 +8,7 @@ const ObjectId = myDatabase.ObjectId;
 const myAwesomeFunctions = require("../my_modules/my_awesome_functions");
 const JsonValidator = require("../my_modules/json_validators");
 const dbCollectionNames = require('../enums/db_collection_names');
+const auth = require("../middleware/auth");
 
 router.get("/", async (req, res) => {
     const titleRegExp = (req.query.title) ? new RegExp(".*"+encodeURIComponent(req.query.title)+".*","i") : ".*";
@@ -39,7 +40,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-router.post("/", jsonParser, 
+router.post("/", auth.userAuth, jsonParser,
   (req, res, next) => {
     const validationResult = JsonValidator.AdvertJsonValidate(req.body);
     if(validationResult[0] === true){
@@ -79,7 +80,7 @@ router.post("/", jsonParser,
   }
 );
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth.userAuth, async (req, res) => {
   const advertId = req.params;
   const deleteOneAdvert = function(obj){
       return obj.deleteOne({ "_id": new ObjectId(advertId) });
@@ -99,7 +100,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", jsonParser, 
+router.patch("/:id", auth.userAuth, jsonParser, 
   (req, res, next) => {
     const validationResult = JsonValidator.AdvertJsonValidate(req.body);
     if(validationResult[0] === true){

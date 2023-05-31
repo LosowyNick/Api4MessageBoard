@@ -6,6 +6,8 @@ const myDatabase = require("../my_modules/db_connector");
 const sendReqToDatabase = myDatabase.sendReqToDatabase;
 const dbCollectionNames = require('../enums/db_collection_names');
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const jwtSecret = process.env.JWT_SECRET;
 
 router.post("/", jsonParser, 
     (req, res, next) => {
@@ -32,12 +34,24 @@ router.post("/", jsonParser,
                 });
             } else {
                 bcrypt.compare(password, user.password).then(function (result) {
-                    result
-                        ? res.status(200).json({
-                            message: "Login successful",
-                            user,
-                        })
-                        : res.status(400).json({ message: "Login not succesful" })
+                    if(result){
+                        const maxAge = 1 * 60 * 60;
+                        const token = jwt.sign(
+                            { id: user._id },
+                            jwtSecret,
+                            { expiresIn: maxAge }
+                        );
+                        res.cookie("jwt", token, {
+                            httpOnly: true,
+                            maxAge: maxAge * 1000,
+                        });
+                        res.status(201).json({
+                            message: "User successfully Logged in",
+                            user: user._id,
+                        });
+                    }else{
+                        res.status(400).json({ message: "Login not succesful" });
+                    }
                 });
             }
         } catch (error) {

@@ -18,12 +18,11 @@ app.listen(process.env.APP_PORT, console.log("Server started..."));
 
 /*
 TODO:
-- zabezpieczyć GET /adverts/:id przed wpisywaniem złego ID..krótkiego? jak to połączyć z domyślnym obrazkiem?
 - status cody dodac do getów i innych...wszędzie!
 - czy userID powinno znajdować się w szablonie? i wysyłanych dokumentach? - już sam nie wiem
-- DELETE advert gdy podajemy zly id - brak ODP :( - headery?
-- UPDATE advert - jw ...problem gdy podajemy zle ID - chyba wiem...... jak wpada do routera "ADVERTS, to stamtąd nie wychodzi :(?"
-- oczywiscie 404...dostawac powinnismy tylko dla GETóW
+- DELETE advert gdy podajemy zly id - brak ODP :( - headery? ->raczej ogarnac statusami
+- UPDATE advert - jw ...problem gdy podajemy zle ID - ->raczej ogarac statusami
+- przejzec statusy z tego tutoriala o hashowaniu i logowaniu bo koles tez mogl sie pomylic, wybierajac takie
 
 RZECZOWNIKI W LICZBIE MNOGIEJ:
 adverts

@@ -5,6 +5,7 @@ const jsonParser = bodyParser.json();
 const myDatabase = require("../my_modules/db_connector");
 const sendReqToDatabase = myDatabase.sendReqToDatabase;
 const dbCollectionNames = require('../enums/db_collection_names');
+const bcrypt = require("bcryptjs");
 
 router.post("/", jsonParser, 
     (req, res, next) => {
@@ -21,7 +22,7 @@ router.post("/", jsonParser,
         try {
             const { login, password } = req.body;
             const getUser = function(obj){
-                return obj.findOne({ "login": login, "password": password });
+                return obj.findOne({ "login": login });
             };
             const user = await sendReqToDatabase(dbCollectionNames.users, getUser);
             if (!user) {
@@ -30,9 +31,13 @@ router.post("/", jsonParser,
                     error: "User not found",
                 });
             } else {
-                res.status(200).json({
-                    message: "Login successful",
-                    user,
+                bcrypt.compare(password, user.password).then(function (result) {
+                    result
+                        ? res.status(200).json({
+                            message: "Login successful",
+                            user,
+                        })
+                        : res.status(400).json({ message: "Login not succesful" })
                 });
             }
         } catch (error) {

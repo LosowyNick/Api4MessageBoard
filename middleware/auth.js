@@ -1,15 +1,25 @@
 const jwt = require("jsonwebtoken");
 const jwtSecret = process.env.JWT_SECRET;
+const dbCollectionNames = require('../enums/db_collection_names');
+const myDatabase = require("../my_modules/db_connector");
+const sendReqToDatabase = myDatabase.sendReqToDatabase;
+const ObjectId = myDatabase.ObjectId;
 
 const userAuth = function (req, res, next){
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    jwt.verify(token, jwtSecret, async (err, decodedToken) => {
       if (err) {
         return res.status(401).json({ message: "Not authorized" });
       } else {
-        if (decodedToken.id !== "6469d0698a02e9dee1fc23d2") { //tylko iwona bedzie moga robic request
-          return res.status(401).json({ message: "Not authorized" });
+        const advertId = req.params;
+        const showOneAdvert = function(obj){
+          return obj.findOne({ "_id": new ObjectId(advertId) });
+        };
+        const advert = await sendReqToDatabase(dbCollectionNames.adverts, showOneAdvert);
+        const advertOwnerId = advert.userId;
+        if (decodedToken.id !== advertOwnerId) { 
+          return res.status(401).json({ message: "Not authorized 2" }); //usn
         } else {
           next();
         }

@@ -40,7 +40,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-router.post("/", auth.userAuth, jsonParser,
+router.post("/", jsonParser,
   (req, res, next) => {
     const validationResult = JsonValidator.AdvertJsonValidate(req.body);
     if(validationResult[0] === true){
@@ -86,7 +86,7 @@ router.delete("/:id", auth.userAuth, async (req, res) => {
       return obj.deleteOne({ "_id": new ObjectId(advertId) });
   };
   const deletionStatus = await sendReqToDatabase(dbCollectionNames.adverts, deleteOneAdvert); 
-  console.log(deletionStatus);
+  console.log(deletionStatus); //usn?
   if(deletionStatus.acknowledged == true){
     if(deletionStatus.deletedCount == 1){
       res.statusCode = 200;

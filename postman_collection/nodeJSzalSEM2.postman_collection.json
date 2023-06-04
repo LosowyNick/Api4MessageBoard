@@ -1,0 +1,742 @@
+{
+	"info": {
+		"_postman_id": "990f14a6-b71c-4627-a709-e769756402ac",
+		"name": "nodeJSzalSEM2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25799207"
+	},
+	"item": [
+		{
+			"name": "error pages",
+			"item": [
+				{
+					"name": "random GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/blablabla",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"blablabla"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "random DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "random OPTIONS",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}"
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "heartbeat",
+			"item": [
+				{
+					"name": "heartbeat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/heartbeat",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"heartbeat"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "login Patryk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"patryk2000\",\r\n    \"password\":\"qwerty111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Mirek",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"mirek2000\",\r\n    \"password\":\"qwerty123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Iwona",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"iwona2000\",\r\n    \"password\":\"111qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET adverts",
+			"item": [
+				{
+					"name": "all adverts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by TITLE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?title=KURTKA",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "KURTKA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by BODY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?body=rz",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": "rz"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by BODY and TITLE - empty values",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?body=&title=",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "body",
+									"value": ""
+								},
+								{
+									"key": "title",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by MAXPRICE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?maxprice=150",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "maxprice",
+									"value": "150"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by MINPRICE and MAXPRICE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?maxprice=250&minprice=100",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "maxprice",
+									"value": "250"
+								},
+								{
+									"key": "minprice",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by MINPRICE and MAXPRICE - wrong value",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?maxprice=2r50&minprice=100",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "maxprice",
+									"value": "2r50"
+								},
+								{
+									"key": "minprice",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by MAXDATE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?maxdate=2023-05-27",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "maxdate",
+									"value": "2023-05-27"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by MINDATE and MAXDATE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?maxdate=2023-05-29&mindate=2023-05-26",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "maxdate",
+									"value": "2023-05-29"
+								},
+								{
+									"key": "mindate",
+									"value": "2023-05-26"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts with filtering by TAGS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts?tags=Polska,opeL",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							],
+							"query": [
+								{
+									"key": "tags",
+									"value": "Polska,opeL"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET advert",
+			"item": [
+				{
+					"name": "adverts/id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/html",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/6471ea496e1bfd050c76d017",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"6471ea496e1bfd050c76d017"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts/id - custom ACCEPT header",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/6471ea496e1bfd050c76d017",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"6471ea496e1bfd050c76d017"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts/id (wrong ID)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/1471ea496e1bfd050c76d017",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"1471ea496e1bfd050c76d017"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts/id/blablabla - wrong path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/6471ea496e1bfd050c76d017/blablabla",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"6471ea496e1bfd050c76d017",
+								"blablabla"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST adverts",
+			"item": [
+				{
+					"name": "adverts (as Patryk)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Kupię kilo pomidorów\",\r\n    \"body\": \"Potrzebuję dużo pomidorów na Tomadiie.\",\r\n    \"userId\": \"6469d03c8a02e9dee1fc23d1\",\r\n    \"category\": \"Rolnictwo\",\r\n    \"price\": 1400,\r\n    \"tags\": [\r\n        \"Pomidor\"\r\n    ],\r\n    \"deliveryMethods\": [\r\n        \"InPost\"\r\n    ],\r\n    \"paymentMethods\": [\r\n        \"Gotówka\"\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts - no title",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titleBLEBLE\": \"Kupię kilo pomidorów\",\r\n    \"body\": \"Potrzebuję dużo pomidorów na Tomadiie.\",\r\n    \"userId\": \"6469d03c8a02e9dee1fc23d1\",\r\n    \"category\": \"Rolnictwo\",\r\n    \"price\": 1400,\r\n    \"tags\": [\r\n        \"Pomidor\"\r\n    ],\r\n    \"deliveryMethods\": [\r\n        \"InPost\"\r\n    ],\r\n    \"paymentMethods\": [\r\n        \"Gotówka\"\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts - empty title",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"\",\r\n    \"body\": \"Potrzebuję dużo pomidorów na Tomadiie.\",\r\n    \"userId\": \"6469d03c8a02e9dee1fc23d1\",\r\n    \"category\": \"Rolnictwo\",\r\n    \"price\": 1400,\r\n    \"tags\": [\r\n        \"Pomidor\"\r\n    ],\r\n    \"deliveryMethods\": [\r\n        \"InPost\"\r\n    ],\r\n    \"paymentMethods\": [\r\n        \"Gotówka\"\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts - wrong category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Kupię kilo pomidorów\",\r\n    \"body\": \"Potrzebuję dużo pomidorów na Tomadiie.\",\r\n    \"userId\": \"6469d03c8a02e9dee1fc23d1\",\r\n    \"category\": \"Astrofizyka\",\r\n    \"price\": 1400,\r\n    \"tags\": [\r\n        \"Pomidor\"\r\n    ],\r\n    \"deliveryMethods\": [\r\n        \"InPost\"\r\n    ],\r\n    \"paymentMethods\": [\r\n        \"Gotówka\"\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE adverts",
+			"item": [
+				{
+					"name": "adverts/id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/647c709d02577a214365fbc8",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"647c709d02577a214365fbc8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts/id - wrong id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/1111111111111111",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"1111111111111111"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PATCH adverts",
+			"item": [
+				{
+					"name": "adverts/id (Mirek's advert)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \":P\",\r\n    \"body\": \"Test test test\",\r\n    \"userId\": \"6469cfaae7387437e5cbedbc\",\r\n    \"category\": \"Rolnictwo\",\r\n    \"price\": 100,\r\n    \"tags\": [\r\n        \"Polska\"\r\n    ],\r\n    \"deliveryMethods\": [\r\n        \"InPost\"\r\n    ],\r\n    \"paymentMethods\": [\r\n        \"Blik\"\r\n    ]\r\n  }"
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/6471ea496e1bfd050c76d017",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"6471ea496e1bfd050c76d017"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adverts/id - wrong id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \":P\",\r\n    \"body\": \"Test test test\",\r\n    \"userId\": \"6469cfaae7387437e5cbedbc\",\r\n    \"category\": \"Rolnictwo\",\r\n    \"price\": 100,\r\n    \"tags\": [\r\n        \"Polska\"\r\n    ],\r\n    \"deliveryMethods\": [\r\n        \"InPost\"\r\n    ],\r\n    \"paymentMethods\": [\r\n        \"Blik\"\r\n    ]\r\n  }"
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/adverts/6471ea496e1bfd050c76d017",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"adverts",
+								"6471ea496e1bfd050c76d017"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

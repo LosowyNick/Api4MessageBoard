@@ -26,23 +26,10 @@ TODO:
 - UPDATE advert - jw ...problem gdy podajemy zle ID - ->raczej ogarac statusami
 - przejzec statusy z tego tutoriala o hashowaniu i logowaniu bo koles tez mogl sie pomylic, wybierajac takie
 
-RZECZOWNIKI W LICZBIE MNOGIEJ:
-adverts
-
-CRUD dla advert:
-    CREATE: POST /adverts  ########## DONE
-    READ: GET /adverts ########## DONE
-    READ: GET /adverts/:id ########## DONE
-    UPDATE: PATCH /adverts/:id ########## DONE
-    DELETE: DELETE /adverts/:id ########## DONE
-
-    Listowanie advertsów z wyszukiwaniem
-    GET /adverts?cat1={query_cat1}&cat2={query_cat2} ########## DONE
-
-INNE
-
-CRUD dla users
-    READ: GET /users
-    READ: GET /users/:id
+- dodać odpowiedni status dla nieobsługiwancyh operacji...np PUT?
+- dodac więcej ogłoszeń do bazy
+- statusy przy wyszukiwaniach???
+- zly ID w delete wywala aplikacje:D
+- zli ID przy modification wywala apke
 
 */

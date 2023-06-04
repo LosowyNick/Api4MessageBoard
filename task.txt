@@ -30,7 +30,7 @@ Każde ogłoszenie ma:
     • ... (miejsce na Twoje pomysły, najlepsze będą punktowane dodatkowo)
 Interfejs graficzny nie jest wymagany. Funkcjonalność będzie sprawdzona przy pomocy Postmana. Należy pamiętać o obsłudze błędów, nazewnictwie endpointów, obsłudze metod HTTP oraz zwracanych kodów odpowiedzi HTTP.
 Lista funkcji:
-    0. PENDING - Aplikacja jest udokumentowana za pomocą Postmana - kolekcją zawierającą przykłady żądań do wszystkich przygotowanych funkcji.
+    0. DONE - Aplikacja jest udokumentowana za pomocą Postmana - kolekcją zawierającą przykłady żądań do wszystkich przygotowanych funkcji.
     1. DONE - [1 punkt] Port z którego korzysta aplikacja powinien być ustawiany za pomocą zmiennych środowiskowych.
     2. DONE - [1 punkt] Na żądania wysłane pod adres /heartbeat aplikacja odpowiada zwracając aktualną datę i godzinę.
     3. DONE - [1 punkt] Aplikacja umożliwia dodawanie ogłoszenia.
@@ -62,3 +62,6 @@ _id:  ObjectId(6469d0698a02e9dee1fc23d2),
 name: "Iwona",
 login: "iwona2000",
 password: "111qwerty"
+
+///Edited///
+node app.js --debug

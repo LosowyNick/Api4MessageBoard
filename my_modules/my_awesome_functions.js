@@ -28,7 +28,7 @@ function encodeStringsInJson(json){
   }
 
 function validateMinPrice(minPrice){
-  if(minPrice != undefined && !Number.isNaN(parseFloat(minPrice))){
+  if(minPrice != undefined && /^[0-9]+[.]?([0-9]+)?$/.test(minPrice)){
     return parseFloat(minPrice);
   }else{
     return -Infinity;
@@ -36,7 +36,7 @@ function validateMinPrice(minPrice){
 }
 
 function validateMaxPrice(maxPrice){
-  if(maxPrice != undefined && !Number.isNaN(parseFloat(maxPrice))){
+  if(maxPrice != undefined && /^[0-9]+[.]?([0-9]+)?$/.test(maxPrice)){
     return parseFloat(maxPrice);
   }else{
     return Infinity;

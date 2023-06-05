@@ -25,7 +25,7 @@ TODO:
 - DELETE advert gdy podajemy zly id - brak ODP :( - headery? ->raczej ogarnac statusami
 - UPDATE advert - jw ...problem gdy podajemy zle ID - ->raczej ogarac statusami
 - przejzec statusy z tego tutoriala o hashowaniu i logowaniu bo koles tez mogl sie pomylic, wybierajac takie
-
+- obsluga bledów - przejrzec
 - dodać odpowiedni status dla nieobsługiwancyh operacji...np PUT?
 - dodac więcej ogłoszeń do bazy
 - statusy przy wyszukiwaniach???

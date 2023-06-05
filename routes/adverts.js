@@ -10,7 +10,7 @@ const JsonValidator = require("../my_modules/json_validators");
 const dbCollectionNames = require('../enums/db_collection_names');
 const auth = require("../middleware/auth");
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
     const titleRegExp = (req.query.title) ? new RegExp(".*"+encodeURIComponent(req.query.title)+".*","i") : ".*";
     const bodyRegExp = (req.query.body) ? new RegExp(".*"+encodeURIComponent(req.query.body)+".*","i") : ".*";
     const minPrice = myAwesomeFunctions.validateMinPrice(req.query.minprice);
@@ -21,8 +21,12 @@ router.get("/", async (req, res) => {
     const showAdverts = function(obj){
       return obj.find({$and:[{tags:{$regex: tagsRegExp}},{modified:{$gte: minDate, $lte: maxDate}},{title:{$regex : titleRegExp}},{body:{$regex : bodyRegExp}},{price: {$gte: minPrice, $lte: maxPrice}}]}).toArray();
     };
-    const adverts = await sendReqToDatabase(dbCollectionNames.adverts, showAdverts); 
-    res.send(adverts);
+    const adverts = await sendReqToDatabase(dbCollectionNames.adverts, showAdverts);
+    if(adverts != undefined){
+      res.status(200).send(adverts);
+    }else{
+      next();
+    }
 });
 
 router.get("/:id", async (req, res, next) => {
@@ -36,7 +40,7 @@ router.get("/:id", async (req, res, next) => {
       next();
     }else{
       myAwesomeFunctions.setProperAcceptHeader(res);
-      res.send(searchedAdvert);
+      res.status(200).send(searchedAdvert);
     }
 });
 
@@ -59,7 +63,7 @@ router.post("/", jsonParser,
       next();
     }else{
       res.statusCode = 401;
-      res.send("User not found.");
+      res.send("Not authorized.");
     }
   },
   async (req, res) => {
@@ -74,7 +78,7 @@ router.post("/", jsonParser,
       res.statusCode = 201;
       res.send(createdAdvert.insertedId);
     }else{
-      res.statusCode = 424;
+      res.statusCode = 500;
       res.send("Advert creation has failed.");
     }
   }
@@ -86,7 +90,6 @@ router.delete("/:id", auth.userAuth, async (req, res) => {
       return obj.deleteOne({ "_id": new ObjectId(advertId) });
   };
   const deletionStatus = await sendReqToDatabase(dbCollectionNames.adverts, deleteOneAdvert); 
-  console.log(deletionStatus); //usn?
   if(deletionStatus.acknowledged == true){
     if(deletionStatus.deletedCount == 1){
       res.statusCode = 200;
@@ -95,7 +98,7 @@ router.delete("/:id", auth.userAuth, async (req, res) => {
       res.statusCode = 204;
     }
   }else{
-    res.statusCode = 424;
+    res.statusCode = 500;
     res.send("Deletion has failed.");
   }
 });

@@ -17,11 +17,3 @@ app.use("/login", loginPage);
 app.use("*", errorPage);
 
 app.listen(process.env.APP_PORT, console.log("Server started..."));
-
-/*
-TODO:
-- status cody dodac do getów i innych...wszędzie!
-- obsluga bledów - przejrzec
-- dodac więcej ogłoszeń do bazy
-- statusy przy wyszukiwaniach???
-*/

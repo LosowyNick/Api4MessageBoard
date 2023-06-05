@@ -55,9 +55,9 @@ router.post("/", jsonParser,
                 });
             }
         } catch (error) {
-            res.status(400).json({
-                message: "An error occurred",
-                error: error.message,
+            console.log(error.message);
+            res.status(500).json({
+                message: "An error occurred"
             });
         }
     }

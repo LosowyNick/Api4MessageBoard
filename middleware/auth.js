@@ -17,11 +17,15 @@ const userAuth = function (req, res, next){
           return obj.findOne({ "_id": new ObjectId(advertId) });
         };
         const advert = await sendReqToDatabase(dbCollectionNames.adverts, showOneAdvert);
-        const advertOwnerId = advert.userId;
-        if (decodedToken.id !== advertOwnerId) { 
-          return res.status(401).json({ message: "Not authorized 2" }); //usn
-        } else {
-          next();
+        if(advert != undefined || advert != null){
+          const advertOwnerId = advert.userId;
+          if (decodedToken.id !== advertOwnerId) { 
+            return res.status(401).json({ message: "Not authorized" });
+          } else {
+            next();
+          }
+        }else{
+          return res.status(404).json({ message: "Authorization not possible." });
         }
       }
     });

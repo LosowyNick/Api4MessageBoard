@@ -1,3 +1,5 @@
+//zmienic nazwe!!! :)
+
 function setProperAcceptHeader(response){
     response.format({
       'text/plain': function () {

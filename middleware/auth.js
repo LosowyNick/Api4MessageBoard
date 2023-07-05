@@ -17,7 +17,7 @@ const userAuth = function (req, res, next){
           return obj.findOne({ "_id": new ObjectId(advertId) });
         };
         const advert = await sendReqToDatabase(dbCollectionNames.adverts, showOneAdvert);
-        if(advert != undefined || advert != null){
+        if(advert != undefined || advert != null){ //!!! cos dziwnego
           const advertOwnerId = advert.userId;
           if (decodedToken.id !== advertOwnerId) { 
             return res.status(401).json({ message: "Not authorized" });

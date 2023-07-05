@@ -6,7 +6,7 @@ const args = yargs.argv;
 const debug = args.debug;
 
 const logger = function(req, res, next){
-    if(debug != undefined){
+    if(debug != undefined){ //if powinien byc na zewnatrz,,,,przy rejestracji middleware
         const logfilePath = process.env.LOGFILE_PATH;
         let msg = `${Date.now()}, ${req.method}, ${req.headers.host+req.originalUrl}\n`;
         var stream = fs.createWriteStream(logfilePath, {flags:'a'});

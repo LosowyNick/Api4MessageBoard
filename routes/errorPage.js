@@ -21,7 +21,7 @@ router.patch('*', (req, res) => {
     res.end();
 });
 
-router.all('*', (req, res) => {
+router.all('*', (req, res) => { //to starczy ....i 404 wszedzie
     res.statusCode = 400;
     res.end();
 })

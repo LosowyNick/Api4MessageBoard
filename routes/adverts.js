@@ -10,6 +10,7 @@ const JsonValidator = require("../my_modules/json_validators");
 const dbCollectionNames = require('../enums/db_collection_names');
 const auth = require("../middleware/auth");
 
+//w jednym pliku obsloge root , i przygotowanie obiektow do bazy danych (dobrze bazodanowe wywalic do innego pliku)
 router.get("/", async (req, res, next) => {
     const titleRegExp = (req.query.title) ? new RegExp(".*"+encodeURIComponent(req.query.title)+".*","i") : ".*";
     const bodyRegExp = (req.query.body) ? new RegExp(".*"+encodeURIComponent(req.query.body)+".*","i") : ".*";
@@ -28,6 +29,9 @@ router.get("/", async (req, res, next) => {
       next();
     }
 });
+
+///za duzo encodowanie ...spacje
+//postman...brak testow, ale dobra organizacja!
 
 router.get("/:id", async (req, res, next) => {
   
